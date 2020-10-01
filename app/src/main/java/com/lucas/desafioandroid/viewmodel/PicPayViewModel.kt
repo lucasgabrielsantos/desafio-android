@@ -6,25 +6,26 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lucas.desafioandroid.usecase.PicPayUseCase
-import com.lucas.desafioandroid.viewmodel.event.PicPayEvent
+import com.lucas.desafioandroid.viewmodel.state.PicPayState
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class PicPayViewModel(private var useCase: PicPayUseCase) : ViewModel() {
+class PicPayViewModel(private val useCase: PicPayUseCase) : ViewModel() {
 
-    private val event: MutableLiveData<PicPayEvent> = MutableLiveData()
-    val eventView: LiveData<PicPayEvent> = event
+    private val state: MutableLiveData<PicPayState> = MutableLiveData()
+    val stateView: LiveData<PicPayState> = state
 
     fun getList(){
+        state.value = PicPayState.LoadingVisible(View.VISIBLE)
         viewModelScope.launch {
-            event.value = PicPayEvent.LoadingVisible(View.GONE)
+            state.value = PicPayState.LoadingVisible(View.GONE)
             try {
                 val listUsers = useCase.getListUsers()
-                event.value = PicPayEvent.Success(listUsers)
-                event.value = PicPayEvent.LoadingGone(View.GONE)
+                state.value = PicPayState.Success(listUsers)
+                state.value = PicPayState.LoadingGone(View.GONE)
             } catch (ex: Exception){
                 ex.printStackTrace()
-                event.value = PicPayEvent.ListError(ex.message.toString())
+                state.value = PicPayState.ListError(ex.message.toString())
             }
         }
     }

@@ -8,6 +8,9 @@ import com.squareup.picasso.Picasso
 object HelperView {
 
     fun callImagePicasso(resultList: User, ivPicture: ImageView) {
-        Picasso.get().load(resultList.img).error(R.drawable.ic_round_account_circle).into(ivPicture)
+        Picasso.get()
+            .load(resultList.img)
+            .error(R.drawable.ic_round_account_circle)
+            .into(ivPicture)
     }
 }

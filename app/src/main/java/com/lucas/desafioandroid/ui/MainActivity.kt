@@ -13,7 +13,7 @@ import com.lucas.desafioandroid.R
 import com.lucas.desafioandroid.model.User
 import com.lucas.desafioandroid.ui.adapter.PicPayAdapter
 import com.lucas.desafioandroid.viewmodel.PicPayViewModel
-import com.lucas.desafioandroid.viewmodel.event.PicPayEvent
+import com.lucas.desafioandroid.viewmodel.state.PicPayState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -34,13 +34,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        viewModel.eventView.observe(this, Observer { event ->
+        viewModel.stateView.observe(this, Observer { event ->
             event?.let {
                 when (event) {
-                    is PicPayEvent.Success -> initListAdapter(event.getListPicPay)
-                    is PicPayEvent.LoadingVisible -> loading()
-                    is PicPayEvent.LoadingGone -> goneLoading()
-                    is PicPayEvent.ListError -> showError()
+                    is PicPayState.Success -> initListAdapter(event.getListPicPay)
+                    is PicPayState.LoadingVisible -> loading()
+                    is PicPayState.LoadingGone -> goneLoading()
+                    is PicPayState.ListError -> showError()
 
                 }
             }

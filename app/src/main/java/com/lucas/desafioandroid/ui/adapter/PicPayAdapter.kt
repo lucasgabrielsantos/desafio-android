@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.lucas.desafioandroid.R
-import com.lucas.desafioandroid.model.Users
+import com.lucas.desafioandroid.model.User
 
 class PicPayAdapter(
-    private val getList: List<Users>
+    private val getList: List<User>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)

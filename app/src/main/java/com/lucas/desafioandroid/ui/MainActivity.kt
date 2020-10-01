@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lucas.desafioandroid.R
-import com.lucas.desafioandroid.model.Users
+import com.lucas.desafioandroid.model.User
 import com.lucas.desafioandroid.ui.adapter.PicPayAdapter
 import com.lucas.desafioandroid.viewmodel.PicPayViewModel
 import com.lucas.desafioandroid.viewmodel.event.PicPayEvent
@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var picPayRecyclerView: RecyclerView
     private val viewModel: PicPayViewModel by viewModel()
 
-    private val clSuccess by lazy { findViewById<ConstraintLayout>(R.id.cl_Success) }
-    private val llError by lazy { findViewById<LinearLayout>(R.id.ll_messageError) }
+    private val clSuccess by lazy { findViewById<ConstraintLayout>(R.id.clSuccess) }
+    private val llError by lazy { findViewById<LinearLayout>(R.id.llMessageError) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,17 +49,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        progressBar = findViewById(R.id.user_list_progress_bar)
+        progressBar = findViewById(R.id.userListProgressBar)
         picPayRecyclerView = findViewById(R.id.recyclerView)
 
     }
 
-    private fun initListAdapter(picPayList: List<Users>) {
+    private fun initListAdapter(picPayList: List<User>) {
         picPayRecyclerView.layoutManager = LinearLayoutManager(this)
-        picPayRecyclerView.adapter =
-            PicPayAdapter(
-                picPayList
-            )
+        picPayRecyclerView.adapter = PicPayAdapter(picPayList)
+
         picPayRecyclerView.visibility = View.VISIBLE
         clSuccess.visibility = View.VISIBLE
         llError.visibility = View.GONE

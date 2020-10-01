@@ -57,8 +57,6 @@ class MainActivity : AppCompatActivity() {
     private fun initListAdapter(picPayList: List<User>) {
         picPayRecyclerView.layoutManager = LinearLayoutManager(this)
         picPayRecyclerView.adapter = PicPayAdapter(picPayList)
-
-        picPayRecyclerView.visibility = View.VISIBLE
         clSuccess.visibility = View.VISIBLE
         llError.visibility = View.GONE
     }
@@ -72,7 +70,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showError() {
-        progressBar.visibility = View.GONE
         llError.visibility = View.VISIBLE
         clSuccess.visibility = View.GONE
 
